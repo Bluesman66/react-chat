@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PeopleList, MessagesList } from './../containers';
+import { PeopleList, MessagesList } from 'containers';
 
 export default class ChatComponent extends Component {
 	render() {
