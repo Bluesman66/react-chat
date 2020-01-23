@@ -1,5 +1,5 @@
-import ChatComponent from './chat';
+import Chat from './chat';
 
 export {
-	ChatComponent
+	Chat
 }

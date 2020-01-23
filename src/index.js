@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { ChatComponent } from './components';
+import { Chat } from './components';
 import './assets/styles/style.scss';
 
-render(<ChatComponent />, document.getElementById('root'));
+render(<Chat />, document.getElementById('root'));
