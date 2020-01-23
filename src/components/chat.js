@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { PeopleList, MessagesList } from 'containers';
 import store from 'store';
 
+window.store = store;
 class Chat extends Component {
 	render() {
 		return (
