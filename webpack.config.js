@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpackConfig = {
 	entry: {
 		app: [
+			'react-hot-loader/patch',
 			path.resolve(__dirname, './src/index.js')
 		]
 	},
