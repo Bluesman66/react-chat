@@ -2,12 +2,18 @@ const webpack = require('webpack');
 const path = require('path');
 const outputPath = path.resolve(__dirname, './dist');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const webpackConfig = {
 	entry: {
 		app: [
 			'react-hot-loader/patch',
 			path.resolve(__dirname, './src/index.js')
+		],
+		vendors: [
+			'react',
+			'react-dom'
 		]
 	},
 	output: {
@@ -71,6 +77,37 @@ const webpackConfig = {
 		hot: true,
 		host: '0.0.0.0'
 	}
+}
+
+if (process.env.NODE_DEV === 'production') {
+	webpackConfig.concat({
+		optimization: {
+			minimizer: [
+				new UglifyJsPlugin({
+					uglifyOptions: {
+						warnings: false,
+						parse: {},
+						compress: {},
+						mangle: true, // Note `mangle.properties` is `false` by default.
+						output: null,
+						toplevel: false,
+						nameCache: null,
+						ie8: false,
+						keep_fnames: false,
+					}
+				})
+			]
+		},
+		plugins: [new MiniCssExtractPlugin()],
+		module: {
+			rules: [
+				{
+					test: /\.css$/i,
+					use: [MiniCssExtractPlugin.loader, 'css-loader'],
+				},
+			],
+		}
+	})
 }
 
 module.exports = webpackConfig;
